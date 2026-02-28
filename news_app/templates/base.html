@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="primary-header">
+            <div class="container">
+                <nav>
+                    <a href="#">Home</a>
+                    <a href="#">About</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Contact us</a>
+                </nav>
+                <nav>
+                    <div class="header-inner">
+                    <a href="#">
+                        <img src="{% static './img/Treads.svg' %}" alt="">
+                    </a>
+                    <a href="#">
+                        <img src="{% static './img/telega.svg' %}" alt="">
+                    </a>
+                    <a href="#">
+                        <img src="{% static './img/inst.svg' %}" alt="">
+                    </a>
+                    </div>
+                </nav>
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="second-header">
+                <div class="container-fluid">
+                    <div class="header-inner">
+                        <a href=" {% url 'admin:index' %}">
+                            <img src="{% static './img/Login.svg' %}">
+                            <span>Login</span>
+                        </a>
+                        <a href="#" class="logo">
+                            <img src="{% static './img/спанчлого.png' %}" width="150" height="40">
+                        </a>
+                        <a href="#">
+                            <img src="{% static './img/telephone.svg' %}">
+                            <span>+7-747-777-47-77</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="third-header">
+                <div class="container-fluid">
+                    <div class="header-inner">
+                    <nav>
+                        <a href="{% url 'all_news_page' %}">All news</a>
+
+                        {% for category in categories %}
+                        <a href="{% url 'news_by_category' pk=category.pk %}">{{category.name}}</a>
+                        {% endfor %}
+                    </nav>
+                    <a href="{% url 'search_page'%}">
+                        <img src="{% static './img/search.svg' %}">
+                        <span>Search</span>
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <main class="container">
+        {% block content %}
+        {% endblock%}
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+
+            <a href="#" >
+                <img src="{% static './img/спанчлого.png' %}" height="50px">
+            </a>
+            <p>&copy; TOO SpongeBob SquarePants 2026, All rights reserved. </p>
+
+        </div>
+    </footer>
+</body>
+</html>
